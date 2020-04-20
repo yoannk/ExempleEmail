@@ -21,19 +21,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         context = this;
 
-        EditText txtObjet = findViewById(R.id.txtObjet);
-        EditText txtDestinataire = findViewById(R.id.txtDestinataire);
-        EditText txtMessage = findViewById(R.id.txtMessage);
-
-        final String objet = txtObjet.getText().toString().trim();
-        final String destinataire = txtDestinataire.getText().toString().trim();
-        final String message = txtMessage.getText().toString().trim();
+        final EditText txtObjet = findViewById(R.id.txtObjet);
+        final EditText txtDestinataire = findViewById(R.id.txtDestinataire);
+        final EditText txtMessage = findViewById(R.id.txtMessage);
 
         Button btnEnvoyer = findViewById(R.id.btnEnvoyer);
 
         btnEnvoyer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String objet = txtObjet.getText().toString().trim();
+                String destinataire = txtDestinataire.getText().toString().trim();
+                String message = txtMessage.getText().toString().trim();
+
                 if (objet.isEmpty()) {
                     Toast.makeText(context, "Veuillez saisir un objet", Toast.LENGTH_SHORT).show();
                     return;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         emailIntent.putExtra(Intent.EXTRA_TEXT, message);
 
         try {
-            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            startActivity(Intent.createChooser(emailIntent, "Envoi du message..."));
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(context, "Impossible d'envoyer le message.", Toast.LENGTH_SHORT).show();
         }
